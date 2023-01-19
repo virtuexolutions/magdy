@@ -142,22 +142,22 @@
 <div class="container login-container">
             <div class="row">
             @error('email')
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-          </span>
-      @enderror
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
                 <div class="col-md-6 login-form-1">
                     <h3>Login</h3>
                     <form method="POST" action="{{ route('login') }}">
                       @csrf
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" placeholder="Your Email *" value="" />
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Your Email *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control" placeholder="Your Password *" value="" />
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Your Password *" value="" />
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>{{$message}}</strong>
                                 </span>
                             @enderror
                         </div>
