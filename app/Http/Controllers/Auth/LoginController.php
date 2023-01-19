@@ -49,11 +49,9 @@ class LoginController extends Controller
             return redirect()->to('/login')->with('error', 'User Logout successfully.');
         }
     }
-
     public function verifyAccount($token)
     {
         $verifyUser = UserVerify::where('token', $token)->first();
-  
         $message = 'Sorry your email cannot be identified.';
   
         if(!is_null($verifyUser) ){

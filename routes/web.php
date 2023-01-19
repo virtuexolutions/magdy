@@ -15,7 +15,13 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Travelar\DashboardController as Travelar_dashboard;
 use App\Http\Controllers\Shopper\DashboardController as Shopper_dashboard;
+
+
+
 use App\Http\Controllers\Shopper\TravelarsController as ontravels_Travelars;
+use App\Http\Controllers\Shopper\ProductsContoller;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +78,9 @@ use App\Http\Controllers\Shopper\TravelarsController as ontravels_Travelars;
        
 
         Route::get('/shopper/dashboard', [Shopper_dashboard::class, 'index'])->name('shopper-dashboard');
+        Route::resource('/shopper/product', ProductsContoller::class);
+
+
         Route::get('/travelars-list', [ontravels_Travelars::class, 'index'])->name('travelar-list');
         
         
