@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Image;
+use App\Models\Gallery;
 class ProfileController extends Controller
 {
     /**
@@ -23,9 +24,18 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function file_upload(Request $request)
     {
-        //
+
+        $image = $request->file('file');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('images'),$imageName);
+        
+        $imageUpload = new Gallery();
+        $imageUpload->user_id = Auth::user()->id;
+        $imageUpload->filename = $imageName;
+        $imageUpload->save();
+        return response()->json(['success'=>$imageName]);
     }
 
     /**
@@ -123,5 +133,16 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function file_delete(Request $request)
+    {
+        $filename =  $request->get('filename');
+        Gallery::where('filename',$filename)->delete();
+        $path=public_path().'/images/'.$filename;
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        return $filename;  
     }
 }
