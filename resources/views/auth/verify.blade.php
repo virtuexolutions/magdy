@@ -1,197 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app_front')
+@section('content')
+<style>
+  .login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login-logo{
+    position: relative;
+    margin-left: -41.5%;
+}
+.login-logo img{
+    position: absolute;
+    width: 20%;
+    margin-top: 19%;
+    background: black;
+    border-radius: 4.5rem;
+    padding: 5%;
+}
+.login-form-1{
+    padding: 9%;
+    background:black;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    margin-bottom:12%;
+    color:#fff;
+}
+.login-form-2{
+    padding: 9%;
+    background: #ffdb74;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;
+    margin-bottom:12%;
+    color: #fff;
+}
+.btnSubmit{
+    font-weight: 600;
+    width: 50%;
+    color: black;
+    background-color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding:2%;
+}
+.btnForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.btnForgetPwd:hover{
+    text-decoration:none;
+    color:#fff;
+}
+</style>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in (v2)</title>
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('/admin/plugins/fontawesome-free/css/all.min.css')}}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{asset('/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('/admin/dist/css/adminlte.min.css')}}">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/css/intlTelInput.css" rel="stylesheet"
-        media="screen">
-    
-</head>
-
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <!-- <a href="/admin/index2.html" class="h1"><b>Admin</b>LTE</a> -->
-            </div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">{{ __('Verify Your Email Address & Phone Number') }}</div>
-                            <div class="card-body">
-                                @if(Auth::user()->phone_verified == 0)
-                                    @if(!Session::has('send_otp_success'))
-                                        <form action="{{ route("send_otp") }}" method="POST">
-                                        <div class="row">
-                                        @if(Session::has('success'))
-                                            <div class="alert alert-success" role="alert">
-                                            {{ Session::get('success') }}
-                                            </div>
-                                        @endif
-                                        <div class="col-md-8">
-                                            @csrf
-                                            <input id="phone" name="phone" class="form-control" type="tel">
-                                        </div>
-                                        <div class="col````-md-4">
-                                            <button class="btn btn-md btn-primary">Send</button>
-                                        </div>
-                                        </div>
-                                        </form>
-                                    @else
-                                        <form action="{{ route("verify_otp") }}" method="POST">
-                                            <div class="row">
-                                                @if(Session::has('otp_verify_error'))
-                                                <p class="text-danger">
-                                                    {{ Session::get('otp_verify_error') }}
-                                                </p>
-                                                @endif
-                                                <div class="col-md-8">
-                                                    @csrf
-                                                    <input  name="otp" class="form-control" type="number">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-md btn-primary">Verify</button>
-                                                </div>
-                                            </div>
-                                            </form>
-                                    @endif
-                                    @else
-                                    <p class="text-success">Phone Number Verified</p>
-                                @endif
-                                @if(Auth::user()->email_verified == 0)
-                                    @if(!Session::has('send_mail_success'))
-                                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                                        {{ __('If you did not receive the email') }}, 
-                                        <form class="d-inline" method="POST" action="{{ route('send_mail') }}">
-                                            @csrf
-                                            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here
-                                                to request another') }}</button>.
-                                        </form>
-                                @else
-                                <form action="{{ route("verify_email") }}" method="POST">
-                                    <div class="row">
-                                        @if(Session::has('otp_verify_error'))
-                                        <p class="text-danger">
-                                            {{ Session::get('otp_verify_error') }}
-                                        </p>
-                                        @endif
-                                        <div class="col-md-8">
-                                            @csrf
-                                            <input  name="otp" class="form-control" type="number">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button class="btn btn-md btn-primary">Verify</button>
-                                        </div>
-                                    </div>
-                                 </form>
-                              @endif
-                              @else
-                              <p class="text-success">Email is verified...</p>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container login-container">
+            <div class="row">
+            @if(Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+                </div>
+            @endif
+                <div class="col-md-6 login-form-1">
+                    <h3>{{ __('Verify Your Email Address & Phone Number') }}</h3>
+                    <form action="{{ route('send_otp') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            @if(Auth::user()->phone_verified == 0)
+                            <input id="phone" name="phone" class="form-control" type="tel">
+                            @else
+                            <input id="phone"  name="phone" readonly class="form-control" type="tel">
                             @endif
-
-                            @if(Auth::user()->phone_verified == 1 && Auth::user()->email_verified == 1)
-                                 <a href="{{ route("setup_profile") }}" class="btn btn-default btn-primary">Profile Setup</a>
-                            @endif
-                          </div>
-                               
-                             
-
-                               
-                           
-                            
-                            
-                            </div>
                         </div>
+                        <div class="form-group">
+                          
+                            <input type="submit" style="color:balck" class="btnSubmit" value="Send" />
+                        </div>
+
+                      </form>
+                </div>
+                <div class="col-md-6 login-form-2">
+                    <div class="login-logo">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                     </div>
+                    <h3 style="color:black">Register</h3>
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" placeholder="Your Name *" name="name" value="{{ old('name') }}" required  />
+                            <!-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> -->
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <input id="email"  placeholder="Your Email *" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+
+                            <input id="" class="form-control" hidden name="roles"required autocomplete="new-password">
+                            <input id="password" placeholder="Your Password *" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                              @error('password')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                        </div>
+                        <div class="form-group">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password *">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Register" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-    </div>
-    <!-- /.login-box -->
 
-    <!-- jQuery -->
-    <script src="{{asset('/admin/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{asset('/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{asset('/admin/dist/js/adminlte.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script>
-    <script>
-        $(function () {
-
-            var telInput = $("#phone"),
-                errorMsg = $("#error-msg"),
-                validMsg = $("#valid-msg");
-
-            // initialise plugin
-            telInput.intlTelInput({
-
-                allowExtensions: true,
-                formatOnDisplay: true,
-                autoFormat: true,
-                autoHideDialCode: true,
-                autoPlaceholder: true,
-                defaultCountry: "auto",
-                ipinfoToken: "yolo",
-
-                nationalMode: false,
-                numberType: "MOBILE",
-                onlyCountries: ['us'],
-                preferredCountries: ['sa', 'ae', 'qa', 'om', 'bh', 'kw', 'ma'],
-                preventInvalidNumbers: true,
-                separateDialCode: true,
-                initialCountry: "auto",
-                geoIpLookup: function (callback) {
-                    $.get("http://ipinfo.io", function () { }, "jsonp").always(function (resp) {
-                        var countryCode = (resp && resp.country) ? resp.country : "us";
-                        callback(countryCode);
-                    });
-                },
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"
-            });
-
-            var reset = function () {
-                telInput.removeClass("error");
-                errorMsg.addClass("hide");
-                validMsg.addClass("hide");
-            };
-
-            // on blur: validate
-            telInput.blur(function () {
-                reset();
-                if ($.trim(telInput.val())) {
-                    if (telInput.intlTelInput("isValidNumber")) {
-                        validMsg.removeClass("hide");
-                    } else {
-                        telInput.addClass("error");
-                        errorMsg.removeClass("hide");
-                    }
-                }
-            });
-
-            // on keyup / change flag: reset
-            telInput.on("keyup change", reset);
-        })
-    </script>
-</body>
-
-</html>
+@endsection

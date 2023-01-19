@@ -61,9 +61,18 @@
                     <li><a class="dropdown-item" href="#">Link 2</a></li>
                   </ul>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link active text-white" aria-current="page" href="{{route('login')}}">Become A
-                    Traveler</a>
+                <!-- <li class="nav-item">
+                  <a class="nav-link active text-white" aria-current="page" href="{{route('login')}}">Login</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Login / Sign up
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{{url('/login?role=Travelar')}}">Travelar</a></li>
+                    <li><a class="dropdown-item" href="{{url('/login?role=Shopper')}}">Shopper</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active text-white" aria-current="page" href="{{route('contactus')}}">Contact Us</a>
