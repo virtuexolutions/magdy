@@ -70,7 +70,7 @@
             @enderror
                 <div class="col-md-6 login-form-1">
                     <h3>Login</h3>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" id="form1_id" role="form" action="{{ route('login') }}">
                       @csrf
                         <div class="form-group">
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Your Email *" value="" />
@@ -84,8 +84,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                          
-                            <input type="submit" style="color:balck" class="btnSubmit" value="Login" />
+                            <button type="submit" form='form1_id' class="btnSubmit">Login</button>
                         </div>
                         <div class="form-group">
                             <a href="#" class="btnForgetPwd">Forget Password?</a>
@@ -97,8 +96,32 @@
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                     </div>
                     <h3 style="color:black">Register</h3>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" id="form2_id" role="form" action="{{ route('register') }}">
                         @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="f_name" placeholder="Your Name *"  value="{{ old('f_name') }}" required  />
+                                    <!-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('f_name') }}" required autocomplete="name" autofocus> -->
+                                    @error('f_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                           </div>
+                           <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="l_name" placeholder="Last Name *" value="{{ old('l_name') }}" required  />
+                                <!-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> -->
+                                @error('l_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                       </div>
+                        </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="name" placeholder="Your Name *" name="name" value="{{ old('name') }}" required  />
                             <!-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> -->
@@ -109,8 +132,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input id="email"  placeholder="Your Email *" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                            @error('email')
+                            <input id="r_email"  placeholder="Your Email *" type="email" class="form-control @error('r_email') is-invalid @enderror" name="r_email" value="{{ old('r_email') }}" required autocomplete="r_email">
+                            @error('r_email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -131,7 +154,7 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password *">
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Register" />
+                            <button type="submit" form='form2_id' class="btnSubmit">Register</button>
                         </div>
                     </form>
                 </div>
