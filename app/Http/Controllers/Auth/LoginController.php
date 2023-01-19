@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Spatie\Permission\Models\Role;
 class LoginController extends Controller
 {
     /*
@@ -69,4 +70,11 @@ class LoginController extends Controller
   
       return redirect()->route('login')->with('message', $message);
     }
+    public function showLoginForm($for ="")
+    {
+       $data["role"] = $for; 
+       return view("auth.login",$data);
+    }
+  
+
 }

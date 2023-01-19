@@ -35,9 +35,9 @@ use App\Http\Controllers\Shopper\TravelarsController as ontravels_Travelars;
     Route::get("/about",[AboutController::class,"index"])->name("about");
     Route::get("/how_it_work",[HowItWorkController::class,"index"])->name("howitwork");
     Route::get("/contactus",[ContactUsController::class,"index"])->name("contactus");
-    
     Auth::routes(['verify' => false]);
-    Route::get("/register/{for?}",[RegisterController::class,'showRegistrationForm'])->name("register");
+    Route::get("/login/{for?}",[LoginController::class,'showLoginForm'])->name("register");
+    //Route::get("/register/{for?}",[RegisterController::class,'showRegistrationForm'])->name("register");
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify'); 
 

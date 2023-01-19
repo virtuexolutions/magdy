@@ -75,14 +75,14 @@ class RegisterController extends Controller
 
     public function showRegistrationForm($for ="")
     {
-      if($for == "shopper")
-      {
-        return view("auth.shopper_register");
-      }
-      else
-      {
-        return view("auth.register");
-      }
+      // if($for == "shopper")
+      // {
+      //   return view("auth.shopper_register");
+      // }
+      // else
+      // {
+      //   return view("auth.register");
+      // }
     }
     
 }
