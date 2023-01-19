@@ -132,13 +132,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-<<<<<<< HEAD
-                            <input id="r_email"  placeholder="Your Email *" type="email" class="form-control @error('r_email') is-invalid @enderror" name="r_email" value="{{ old('r_email') }}" required autocomplete="r_email">
-                            @error('r_email')
-=======
                             <input id="email"  placeholder="Your Email *" type="email" class="form-control @error('register_email') is-invalid @enderror" name="register_email" value="{{ old('email') }}" required autocomplete="email">
                             @error('register_email')
->>>>>>> 4c547fb9c77a7245847c725e7c8584dff6a6e9ce
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
