@@ -41,8 +41,8 @@ use App\Http\Controllers\Shopper\ProductsContoller;
     Route::get("/about",[AboutController::class,"index"])->name("about");
     Route::get("/how_it_work",[HowItWorkController::class,"index"])->name("howitwork");
     Route::get("/contactus",[ContactUsController::class,"index"])->name("contactus");
-    Auth::routes(['verify' => false]);
-    Route::get("/login/{for?}",[LoginController::class,'showLoginForm'])->name("register");
+    Auth::routes(['verify' => true]);
+    Route::get("/login/{for?}",[LoginController::class,'showLoginForm'])->name("login");
 
     //Route::get("/register/{for?}",[RegisterController::class,'showRegistrationForm'])->name("register");
     Route::get('logout', [LoginController::class, 'logout']);
