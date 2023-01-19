@@ -42,7 +42,12 @@ use App\Http\Controllers\Shopper\ProductsContoller;
     Route::get("/how_it_work",[HowItWorkController::class,"index"])->name("howitwork");
     Route::get("/contactus",[ContactUsController::class,"index"])->name("contactus");
     Auth::routes(['verify' => false]);
+<<<<<<< HEAD
     Route::get("/login/{for?}",[LoginController::class,'showLoginForm'])->name("login");
+=======
+    Route::get("/login/{for?}",[LoginController::class,'showLoginForm'])->name("register");
+
+>>>>>>> 4c547fb9c77a7245847c725e7c8584dff6a6e9ce
     //Route::get("/register/{for?}",[RegisterController::class,'showRegistrationForm'])->name("register");
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify'); 
@@ -60,6 +65,8 @@ use App\Http\Controllers\Shopper\ProductsContoller;
         Route::POST("/verify_email",[VerificationController::class,"verify_email"])->name("verify_email");
 
         Route::resource('setup_profile', ProfileController::class);
+        Route::post('/image/upload/store', [ProfileController::class,'file_upload']);
+        Route::post('/image/delete', [ProfileController::class,'file_delete']);
 
 
 
@@ -78,7 +85,6 @@ use App\Http\Controllers\Shopper\ProductsContoller;
        
 
         Route::get('/shopper/dashboard', [Shopper_dashboard::class, 'index'])->name('shopper-dashboard');
-        Route::resource('/shopper/product', ProductsContoller::class);
 
 
         Route::get('/travelars-list', [ontravels_Travelars::class, 'index'])->name('travelar-list');

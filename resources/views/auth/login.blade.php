@@ -123,17 +123,22 @@
                        </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Your Name *" name="name" value="{{ old('name') }}" required  />
+                            <input type="text" class="form-control" name="register_name" placeholder="Your Name *" name="name" value="{{ old('register_name') }}" required  />
                             <!-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> -->
-                            @error('name')
+                            @error('register_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group">
+<<<<<<< HEAD
                             <input id="r_email"  placeholder="Your Email *" type="email" class="form-control @error('r_email') is-invalid @enderror" name="r_email" value="{{ old('r_email') }}" required autocomplete="r_email">
                             @error('r_email')
+=======
+                            <input id="email"  placeholder="Your Email *" type="email" class="form-control @error('register_email') is-invalid @enderror" name="register_email" value="{{ old('email') }}" required autocomplete="email">
+                            @error('register_email')
+>>>>>>> 4c547fb9c77a7245847c725e7c8584dff6a6e9ce
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -142,9 +147,9 @@
                         <div class="form-group">
 
                             <input id="" class="form-control" hidden name="roles" value="{{$_REQUEST['role']}}" required autocomplete="new-password">
-                            <input id="password" placeholder="Your Password *" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password" placeholder="Your Password *" type="password" class="form-control @error('register_password') is-invalid @enderror" name="register_password" required autocomplete="new-password">
 
-                              @error('password')
+                              @error('register_password')
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
                                   </span>

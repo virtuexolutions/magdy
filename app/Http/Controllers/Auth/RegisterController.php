@@ -51,11 +51,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+<<<<<<< HEAD
             'l_name' => ['required', 'string', 'max:255'],
             'f_name' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+=======
+            'register_name' => ['required', 'string', 'max:255'],
+            'register_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'register_password' => ['required', 'string', 'min:8', 'confirmed'],
+>>>>>>> 4c547fb9c77a7245847c725e7c8584dff6a6e9ce
         ]);
     }
     /**
@@ -66,6 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+<<<<<<< HEAD
         dd($data);
         // $user = User::create([
         //     'name' => $data['name'],
@@ -74,6 +81,15 @@ class RegisterController extends Controller
         // ]);
         // $user->assignRole($data['roles']);
         // return $user;
+=======
+        $user = User::create([
+            'name' => $data['register_name'],
+            'email' => $data['register_email'],
+            'password' => Hash::make($data['register_password']),
+        ]);
+        $user->assignRole($data['roles']);
+        return $user;
+>>>>>>> 4c547fb9c77a7245847c725e7c8584dff6a6e9ce
     }
 
     public function showRegistrationForm($for ="")

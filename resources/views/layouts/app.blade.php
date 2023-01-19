@@ -237,7 +237,12 @@
               </ul> --}}
             </li>
             @endcan
-
+            <li class="nav-item">
+              <a href="{{route('setup_profile.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Profile</p>
+              </a>
+            </li>
             {{-- Travelar Menus End --}}
 
 

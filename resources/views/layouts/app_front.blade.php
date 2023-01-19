@@ -64,6 +64,7 @@
                 <!-- <li class="nav-item">
                   <a class="nav-link active text-white" aria-current="page" href="{{route('login')}}">Login</a>
                 </li> -->
+                @if(!Auth::check())
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,6 +75,19 @@
                     <li><a class="dropdown-item" href="{{url('/login?role=Shopper')}}">Shopper</a></li>
                   </ul>
                 </li>
+                @else
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    {{Auth::user()->f_name}}
+                  </a>
+                  
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="{{url('/logout')}}">Logout</a></li>
+                  </ul>
+                </li>
+                @endif
                 <li class="nav-item">
                   <a class="nav-link active text-white" aria-current="page" href="{{route('contactus')}}">Contact Us</a>
                 </li>
