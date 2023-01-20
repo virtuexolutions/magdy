@@ -92,9 +92,9 @@
                       </form>
                 </div>
                 <div class="col-md-6 login-form-2">
-                    <div class="login-logo">
+                    {{-- <div class="login-logo">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                    </div>
+                    </div> --}}
                     <h3 style="color:black">Register</h3>
                     <form method="POST" id="form2_id" role="form" action="{{ route('register') }}">
                         @csrf

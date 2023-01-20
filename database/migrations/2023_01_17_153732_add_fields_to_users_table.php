@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            // $table->string('f_name')->nullable();
-            // $table->string('l_name')->nullable();
-            // $table->string('dp')->nullable();
-            // $table->string('occupation')->nullable();
-            // $table->date('dob')->nullable();
-            // $table->string('gender')->nullable();
-            // $table->string('facebook')->nullable();
-            // $table->string('tweeter')->nullable();
-            // $table->string('insta')->nullable();
-            // $table->string('linkdin')->nullable();
+            $table->string('f_name')->nullable();
+            $table->string('l_name')->nullable();
+            $table->string('dp')->nullable();
+            $table->string('occupation')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('tweeter')->nullable();
+            $table->string('insta')->nullable();
+            $table->string('linkdin')->nullable();
         });
     }
 

@@ -52,36 +52,36 @@ class VerificationController extends Controller
     }
     public function send_otp(request $request)
     {
-
         $verification_code = rand(10000,99999);
+        Auth::user()->verifcation_code()->where("type",1)->delete();
         Auth::user()->verifcation_code()->create([
             "code" => $verification_code,
             "type" => 1
         ]);
-        return redirect()->back()->with(["send_otp_success" => "OTP Successfully send..."]);
+        return redirect()->back()->with(["otp_send" => true,"phone" => $request->phone]);
     }
     public function verify_otp(request $request)
     {
        
-
         $this->validate($request, [
             'otp' => 'required',
         ]);
         
         $resp = Auth::user()->verifcation_code()->where([["code","=",$request->otp],["type","=",1],["status","=",1]])->first();
-        Auth::user()->update(["phone_verified" => 1]);
-        
-        if($resp)
+         if(!empty($resp))
         {
             $resp->update(["status" => 2]);
             Auth::user()->update(["phone_verified" => 1]);
-            return redirect()->back()->with(["otp_verify_success" => "OTP Successfully send..."]);
+            Auth::user()->update(["phone" => $request->phone]);
+            return redirect()->back()->with(["otp_verify_success" => true , "message " => "OTP Successfully send..."]);
         }
         else
         {
-            return redirect()->back()->with(["send_otp_success" => " ", "otp_verify_error" => "OTP is incorrent..."]);
+            return redirect()->back()->with(["otp_send"=> true, "send_otp_success" => false, "message" => "OTP is incorrent..."]);
         }
     }
+
+
     public function send_mail(request $request)
     {
         $verification_code = rand(10000,99999);
@@ -91,15 +91,15 @@ class VerificationController extends Controller
             "type" => 2
         ]);
         $email = Auth::user()->email;
-        Mail::to($email)->send(new SendCodeResetPassword($verification_code));
-        return redirect()->back()->with(["send_mail_success" => "Email Successfully Send..."]);
+        // Mail::to($email)->send(new SendCodeResetPassword($verification_code));
+        return redirect()->back()->with(["send_mail_success"=> true , "message" => "Email Successfully Send..."]);
     }
     
     
     public function verify_email(request $request)
     {
         // return Auth::user()->id;
-        $code =Auth::user()->verifcation_code()->where("code",$request->otp)->first();
+        $code =Auth::user()->verifcation_code()->where("code",$request->otp)->where("status",1)->first();
         if($code)
         {
             User::where('id',Auth::user()->id)->update([

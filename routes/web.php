@@ -59,7 +59,6 @@ use App\Http\Controllers\Shopper\ProductsContoller;
         Route::POST("/verify_otp",[VerificationController::class,"verify_otp"])->name("verify_otp");
         Route::POST("/send_mail",[VerificationController::class,"send_mail"])->name("send_mail");
         Route::POST("/verify_email",[VerificationController::class,"verify_email"])->name("verify_email");
-
         Route::resource('setup_profile', ProfileController::class);
         Route::post('/image/upload/store', [ProfileController::class,'file_upload']);
         Route::post('/image/delete', [ProfileController::class,'file_delete']);
