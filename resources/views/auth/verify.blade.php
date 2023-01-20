@@ -86,10 +86,10 @@
             <p class="text-white">{{ Session::get("message") }}</p>
             @endif
             @if(Session::has('otp_send'))
-            <form action="{{ route(" verify_otp") }}" method="post">
+            <form action="{{ route("verify_otp") }}" method="post">
                 @csrf
                 <div class="mb-3">
-                    <input type="hidden" name="phone" value="{{ Session::get(" phone") }}" />
+                    <input type="hidden" name="phone" value="{{ Session::get("phone") }}" />
                     <input type="text" name="otp" value="" class="form-control" placeholder="Verify Otp Code"
                         aria-describedby="OTp">
                 </div>
@@ -218,9 +218,20 @@
                  </svg>
              </div>
             @endif
-        </div>
+         </div>
+
       </div>
     </div>
+    @if(Auth::user()->phone_verified == 1 &&  Auth::user()->email_verified == 1)
+    <div class="row">
+        <div class="col-md-12 mt-5">
+            <div class="d-flex justify-content-center flex-nowrap flex-column">
+                    <p class="text-center"><b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro recusandae sapiente quos, illo minus consequatur, neque fugiat placeat cumque illum assumenda dolorem vero ducimus quas dolore quia sint culpa cupiditate.</b></p>
+                    <a href="{{ url('setup_profile') }}" class="btn btn-default btn-lg border-dark "> Setup profile</a>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 
 @endsection

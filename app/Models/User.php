@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\user_address;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -67,4 +68,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(verifcation_code::class, 'user_id');
     }
+    public function user_address()
+    {
+        return $this->hasmany(user_address::class, 'user_id');
+    }
+    
 }

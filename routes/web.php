@@ -50,9 +50,6 @@ use App\Http\Controllers\Shopper\ProductsContoller;
 
     
     Route::group(['middleware' => ['auth']], function(){
-
-
-
         // verification
         Route::get("/verification",[VerificationController::class,"index"])->name("verification");
         Route::POST("/send_otp",[VerificationController::class,"send_otp"])->name("send_otp");
@@ -60,8 +57,12 @@ use App\Http\Controllers\Shopper\ProductsContoller;
         Route::POST("/send_mail",[VerificationController::class,"send_mail"])->name("send_mail");
         Route::POST("/verify_email",[VerificationController::class,"verify_email"])->name("verify_email");
         Route::resource('setup_profile', ProfileController::class);
-        Route::post('/image/upload/store', [ProfileController::class,'file_upload']);
-        Route::post('/image/delete', [ProfileController::class,'file_delete']);
+        Route::POST('/image/upload/store', [ProfileController::class,'file_upload']);
+        Route::POST('/image/delete', [ProfileController::class,'file_delete']);
+        Route::POST('/add_address', [ProfileController::class,'add_address'])->name("add_address");
+        Route::get('/delete_address/{id}', [ProfileController::class,'delete_address'])->name("delete_address");
+      
+        
 
 
 

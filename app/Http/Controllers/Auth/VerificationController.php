@@ -66,8 +66,7 @@ class VerificationController extends Controller
         $this->validate($request, [
             'otp' => 'required',
         ]);
-        
-        $resp = Auth::user()->verifcation_code()->where([["code","=",$request->otp],["type","=",1],["status","=",1]])->first();
+         $resp = Auth::user()->verifcation_code()->where([["code","=",$request->otp],["type","=",1],["status","=",1]])->first();
          if(!empty($resp))
         {
             $resp->update(["status" => 2]);
@@ -104,8 +103,9 @@ class VerificationController extends Controller
         {
             User::where('id',Auth::user()->id)->update([
                 'email_verified' => 1,
+                'email_verified_at' => date('Y-m-d'),
             ]);
-            return redirect('/')->with(["success" => "Email Verified Successfully..."]);
+            return redirect()->back()->with(["success" => "Email Verified Successfully..."]);
         }
         else
         {

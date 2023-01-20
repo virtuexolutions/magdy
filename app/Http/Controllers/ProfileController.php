@@ -16,7 +16,8 @@ class ProfileController extends Controller
     public function index()
     {
         //
-        return view("profile.index");
+        $data["addresses"] = Auth::user()->user_address()->get();
+        return view("profile.index",$data);
     }
 
     /**
@@ -88,6 +89,42 @@ class ProfileController extends Controller
       }
     }
 
+    
+
+    public function add_address(Request $request)
+    {
+
+        
+      $this->validate($request, [
+        'address_1' => 'required',
+        'address_2' => 'required',
+        'country' => 'required',
+        'city' => 'required',
+        'state' => 'required',
+        'postal' => 'required',
+       ]);
+       try{
+         Auth::user()->user_address()->create(
+            $request->except("_token")
+         );
+         return redirect()->back()->with(["success" => true , "message" => "Address updated..." ]);
+        }
+        catch(\Exception $exception)
+        { 
+         return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+        }
+    }
+    public function delete_address($id)
+    {
+       try{
+         Auth::user()->user_address()->where("id",$id)->delete();
+         return redirect()->back()->with(["success" => true , "message" => "Address Deleted..." ]);
+        }
+        catch(\Exception $exception)
+        { 
+         return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+        }
+    }
     /**
      * Display the specified resource.
      *

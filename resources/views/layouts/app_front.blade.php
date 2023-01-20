@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/lib/slick-slider/slick/slick.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/lib/slick-slider/slick/slick-theme.css') }}" />
+  
 </head>
 <body>
   <header>
@@ -64,6 +65,10 @@
                 <!-- <li class="nav-item">
                   <a class="nav-link active text-white" aria-current="page" href="{{route('login')}}">Login</a>
                 </li> -->
+             
+                <li class="nav-item">
+                  <a class="nav-link active text-white" aria-current="page" href="{{route('contactus')}}">Contact Us</a>
+                </li>
                 @if(!Auth::check())
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
@@ -88,9 +93,6 @@
                   </ul>
                 </li>
                 @endif
-                <li class="nav-item">
-                  <a class="nav-link active text-white" aria-current="page" href="{{route('contactus')}}">Contact Us</a>
-                </li>
               </ul>
               <!-- <form class="d-flex">-->
               <!--  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
@@ -202,10 +204,8 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/css/bootstrap.min.css" integrity="sha512-siwe/oXMhSjGCwLn+scraPOWrJxHlUgMBMZXdPe2Tnk3I0x3ESCoLz7WZ5NTH6SZrywMY+PB1cjyqJ5jAluCOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="{{asset('/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
@@ -213,4 +213,25 @@
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" src="{{ asset('front') }}/assets/lib/slick-slider/slick/slick.min.js"></script>
 <script src="{{ asset('front') }}/assets/js/main.js"></script>
+<script>
+function previewFile() {
+  debugger
+  var preview = $('.profile_image');
+  var file = $('#profile-image-upload')[0].files[0];
+  debugger
+  var reader = new FileReader();
+  reader.addEventListener("load", function () {
+    debugger
+    preview.attr("src",reader.result);
+  }, false);
+  if (file) {
+      reader.readAsDataURL(file);
+  }
+}
+$(function () {
+  $('#profile-image1').on('click', function () {
+    debugger
+      $('#profile-image-upload').click();
+  });
+});</script>
 </html>
