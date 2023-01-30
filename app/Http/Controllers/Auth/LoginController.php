@@ -68,11 +68,9 @@ class LoginController extends Controller
   
       return redirect()->route('login')->with('message', $message);
     }
-    public function showLoginForm($for ="")
+    public function showLoginForm($role ="Shopper")
     {
-       $data["role"] = $for; 
+       $data["role"] = $role;
        return view("auth.login",$data);
     }
-  
-
 }

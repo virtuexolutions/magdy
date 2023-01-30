@@ -141,7 +141,7 @@
                         </div>
                         <div class="form-group">
 
-                            <input id="" class="form-control" hidden name="roles[]" value="{{$_REQUEST['role']}}" required autocomplete="new-password">
+                            <input id="" class="form-control" hidden name="roles[]" value="{{$role}}" required autocomplete="new-password">
                             <input id="password" placeholder="Your Password *" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                               @error('password')
                                   <span class="invalid-feedback" role="alert">

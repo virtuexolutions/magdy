@@ -240,7 +240,7 @@
             var country_from = $("#country_from").val();
             if(country_to != "" && country_from != "" )
             {
-                window.location.href = "/checkout?country_from="+ country_from +"&country_from="+country_to;
+                window.location.href = "/shopper/checkout/"+ country_from +"/"+country_to;
             }
             else
             {

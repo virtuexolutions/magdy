@@ -21,7 +21,7 @@ use App\Http\Controllers\Shopper\DashboardController as Shopper_dashboard;
 use App\Http\Controllers\Shopper\TravelarsController as ontravels_Travelars;
 use App\Http\Controllers\Shopper\ProductsContoller;
 use App\Http\Controllers\Shopper\buyingController;
-
+use App\Http\Controllers\Shopper\CheckoutController;
 
 
 
@@ -44,7 +44,7 @@ use App\Http\Controllers\Shopper\buyingController;
     Route::get("/how_it_work",[HowItWorkController::class,"index"])->name("howitwork");
     Route::get("/contactus",[ContactUsController::class,"index"])->name("contactus");
     Auth::routes(['verify' => true]);
-    Route::get("/login/{for?}",[LoginController::class,'showLoginForm'])->name("login");
+    Route::get("/login/{role?}",[LoginController::class,'showLoginForm'])->name("login");
     //Route::get("/register/{for?}",[RegisterController::class,'showRegistrationForm'])->name("register");
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify'); 
@@ -67,6 +67,8 @@ use App\Http\Controllers\Shopper\buyingController;
         Route::POST('/add_address', [ProfileController::class,'add_address'])->name("add_address");
         Route::POST('/edit_address', [ProfileController::class,'edit_address'])->name("edit_address");
         Route::get('/delete_address/{id}', [ProfileController::class,'delete_address'])->name("delete_address");
+       
+       
         Route::group(['middleware' => ['role_redirection']], function(){
             Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
             Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
@@ -75,9 +77,14 @@ use App\Http\Controllers\Shopper\buyingController;
             Route::resource('permission', PermissionController::class);
             Route::resource('users', UserController::class);
         });
+
+        
         Route::get('/travelar/dashboard', [Travelar_dashboard::class, 'index'])->name('travelar-dashboard');
+        
         Route::get('/shopper/dashboard', [Shopper_dashboard::class, 'index'])->name('shopper-dashboard');
-     
+        Route::get('/shopper/checkout/{country_from}/{country_to}', [CheckoutController::class, 'index'])->name('checkout');
+        Route::Resource('checkout',CheckoutController::class)->except("index");
+
         // Route::get('/travelars-list', [ontravels_Travelars::class, 'index'])->name('travelar-list');
         
         

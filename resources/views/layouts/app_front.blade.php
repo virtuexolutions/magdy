@@ -76,8 +76,8 @@
                     Login / Sign up
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{{url('/login?role=Travelar')}}">Travelar</a></li>
-                    <li><a class="dropdown-item" href="{{url('/login?role=Shopper')}}">Shopper</a></li>
+                    <li><a class="dropdown-item" href="{{url('/login/Travelar')}}">Travelar</a></li>
+                    <li><a class="dropdown-item" href="{{url('/login/Shopper')}}">Shopper</a></li>
                   </ul>
                 </li>
                 @else

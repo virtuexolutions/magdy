@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('credit_cards', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->string('pro_url', 100)->nullable();
-            $table->text('pro_description')->nullable();
-            $table->decimal('amount', 5, 2)->nullable()->default(0.00);
-            $table->string('country_from', 100)->nullable();
-            $table->string('country_to', 100)->nullable();
+            $table->string('card', 16)->nullable();
+            $table->string('expire', 6)->nullable();
+            $table->integer('cvc')->unsigned()->nullable();
+            $table->string('country', 10)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('credit__cards');
     }
 };
