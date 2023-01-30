@@ -25,13 +25,17 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function get_documents()
+    {
+         
+        return  response()->json(["sss"], 200);
+    }
     public function file_upload(Request $request)
     {
-
         $image = $request->file('file');
         $imageName = $image->getClientOriginalName();
         $image->move(public_path('images'),$imageName);
-        
         $imageUpload = new Gallery();
         $imageUpload->user_id = Auth::user()->id;
         $imageUpload->filename = $imageName;
@@ -114,6 +118,31 @@ class ProfileController extends Controller
          return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
         }
     }
+
+
+    public function edit_address(Request $request)
+    {
+       $this->validate($request, [
+        'address_1' => 'required',
+        'address_2' => 'required',
+        'city' => 'required',
+        'state' => 'required',
+        'postal' => 'required',
+       ]);
+       try{
+        echo Auth::user()->user_address()->where("id",$request->id)->update(
+            $request->except("_token")
+         );
+         return redirect()->back()->with(["success" => true , "message" => "Address updated..." ]);
+        }
+        catch(\Exception $exception)
+        { 
+         return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+        }
+    }
+
+
+
     public function delete_address($id)
     {
        try{

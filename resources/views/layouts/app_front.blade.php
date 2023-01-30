@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/lib/slick-slider/slick/slick.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/lib/slick-slider/slick/slick-theme.css') }}" />
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
   <header>
@@ -23,7 +23,7 @@
     <section class="topbar">
       <div class="container">
         <div class="col-md-2 offset-10">
-          <a href="#"><img src="{{ asset('front') }}/images/i.png" alt=""></a>
+          {{-- <a href="#"><img src="{{ asset('front') }}/images/i.png" alt=""></a> --}}
           <a href="#"><img src="{{ asset('front') }}/images/1.png" alt=""></a>
           <!-- <a href="#"><img src="{{ asset('front') }}/images/2.png" alt=""></a> -->
           <!-- <a href="#"><img src="{{ asset('front') }}/images/3.png" alt=""></a> -->
@@ -203,7 +203,6 @@
 
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/css/bootstrap.min.css" integrity="sha512-siwe/oXMhSjGCwLn+scraPOWrJxHlUgMBMZXdPe2Tnk3I0x3ESCoLz7WZ5NTH6SZrywMY+PB1cjyqJ5jAluCOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="{{asset('/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

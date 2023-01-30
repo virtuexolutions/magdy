@@ -22,18 +22,17 @@
     width: 100px;
     height: 100px;
 }   
-
 .profile-tabs a {
     background: black !important;
     color: #fff !important;
     /* height: 50px; */
-    font-size: 20px !important;
+    font-size: 15px !important;
 }
 
 .profile-tabs .active
 {
     background: #ffdb74 !important;
-    /* height: 60px; */
-    scale: 1.2;
-    border: #000 solid 1px !important;
+    height: 50px;
+    /* scale: 1.2; */
+    /* border: #000 solid 1px !important; */
  }

@@ -7,6 +7,10 @@ section.topbar {
     padding-bottom: 4px;
 }
 
+button.navbar-toggler.bg-white {
+    background: #ffdb74 !important;
+}
+
 section.topbar img {
     padding-left: 43px;
 }
@@ -16,8 +20,8 @@ section.topbar img {
 
 .mainmenu ul li a {
     color: white !important;
-    font-size: 15px;
-    padding: 10px;
+    font-size: 16px !important;
+    padding: 7px !important;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -44,7 +48,7 @@ section.topbar img {
 .bannersection {
     background-color: black;
     padding-top: 30px;
-    padding-bottom: 50px;
+    padding-bottom: 150px;
 }
 
 /*.bannersection ul li a {*/
@@ -936,6 +940,11 @@ div#prod .slick-list .product-slider>.row {
     padding: 5rem 0 !important;
 }
 
+/*.secondrow_slider {*/
+/*    margin-top: 10%;*/
+/*    margin-bottom: 16%;*/
+/*}*/
+
 div#prod .slick-list .product-slider>div {
     /* background: red; */
 }
@@ -1112,6 +1121,66 @@ div#slick3 button.slick-next {
     right: -50px;
     top: 109px;
 }
+
+.shopfrom_mu {
+    background: #ffffffad;
+    padding: 33px;
+    margin-top: -19%;
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 50px;
+    border-radius: 20px;
+}
+
+.shopfrom_mu select {
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    font-family: poppins;
+    border: 3px solid black;
+    border-radius: 8px;
+}
+
+.shopfrom_mu h5 {
+    color: black;
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 27px;
+}
+
+.shopfrom_mu p {
+    color: black;
+    font-family: 'Poppins';
+    font-size: 15px;
+}
+
+.shopfrom_mu button {
+    background: gray;
+    margin-left: 42%;
+    padding-right: 25px;
+    padding-left: 25px;
+    color: white;
+    font-family: 'Poppins';
+    margin-top: 3%;
+}
+
+input#product_url {
+    width: 100%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    border: 3px solid #ff0000;
+}
+
+input#product_url::placeholder {
+    font-family: 'Poppins';
+    font-size: 12px;
+    color: gray;
+}
+
+button.btn.buy_mu {
+    background: #f00;
+}
+
 
 
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------Home Page end-------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
@@ -1349,10 +1418,11 @@ section.formsection {
     background: #4a6a8e;
     padding: 64px;
     border-radius: 22px;
-    width: 50% !important;
+    /*width: 50% !important;*/
     padding-bottom: 55px;
     box-shadow: 1px -3px 11px 4px #d3d3d3;
     padding-left: 31px !important;
+    /*width:100% !important;*/
 }
 
 .mainformcolumn h6 {
@@ -1435,7 +1505,7 @@ input#lname {
 
 
 h3.top_heading_mu {
-    font-size: 66px !important;
+    /*font-size: 66px !important;*/
     font-weight: 700 !important;
     color: white !important;
 }
@@ -1511,7 +1581,7 @@ input.mt-3.formsubmitt_btn:hover {
 
 .contact_info {
     BACKGROUND: #ffdb74;
-    padding-left: 4% !important;
+    padding-left: 4%;
     border-top-left-radius: 34px;
     border-bottom-left-radius: 34px;
 }
@@ -1536,7 +1606,7 @@ input.mt-3.formsubmitt_btn:hover {
 .help_head {
     font-family: poppins;
     font-weight: bold;
-    font-size: 31px !important;
+    /*font-size: 31px !important;*/
 }
 
 
@@ -2286,3 +2356,176 @@ section.socialmedia {
 
 
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------social media page end-------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------checkout page start-------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+
+.shopcontent_mu h3 {
+    color: black;
+    font-family: 'Montserrat';
+    font-weight: 600;
+}
+
+.shopcontent_mu p {
+    color: black;
+    font-family: 'Montserrat';
+    width: 100%;
+}
+
+.add_product {
+    padding-left: 40%;
+    font-size: 18px;
+    font-family: 'Poppins';
+}
+
+.first_step input {
+    width: 100%;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.05)!important;
+    border: 2px solid gray;
+    border-radius: 8px;
+    padding: 5px;
+    padding-left: 13px;
+    margin-top: 10px;
+}
+
+.first_step h6 {
+    font-size: 19px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+}
+
+.first_step small {
+    font-family: 'Montserrat';
+}
+
+
+
+.currency {
+    width: 10% !important;
+}
+
+select#currencyselect {
+    padding: 6px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.05)!important;
+    border: 2px solid gray;
+    border-radius: 8px;
+    color: gray;
+    font-family: 'Montserrat';
+    font-size: 14px;
+}
+
+.check_mu button {
+    background: #ff6c36;
+    color: white;
+    padding-right: 22px;
+    padding-left: 22px;
+    margin-top: 18px;
+    font-weight: 500;
+    font-family: 'Montserrat';
+    font-size: 15px;
+}
+
+.check_mu button:hover {
+    background: #ff6c36 !important;
+    color: white !important;
+
+}
+.countrysel_mu h6 {
+    font-size: 26px;
+    color: black;
+    font-family: 'Montserrat';
+    font-weight: 600;
+}
+
+.check_mu span {
+    font-family: 'Montserrat';
+    font-size: 15px;
+}
+
+.shopselect {
+    padding: 4px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.05)!important;
+    border-color: #e6e6e6!important;
+    width: 100%;
+    padding-left: 10px;
+    font-family: 'Montserrat';
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.row.innershop_row h6 {
+    font-size: 18px;
+    margin-top: 11px;
+}
+
+.innershop_row {
+    box-shadow: rgb(0 0 0 / 16%) 0px 10px 50px;
+    padding: 14px;
+    border-radius: 7px;
+}
+
+.ordersummary_mu h3 {
+    font-family: 'Montserrat';
+    font-weight: 600;
+}
+
+.calculated {
+    background: #f0f0f0;
+    padding: 20px;
+    padding-left: unset !important;
+    border-radius: 5px;
+}
+
+.calculated ul li {
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: 800;
+    color: black;
+}
+
+.calculated button {
+    width: 100%;
+    background: #fc7137;
+    border-color: #fc7137;
+}
+.calculated button:hover {
+    width: 100%;
+    background: #fc7137 !important;
+    border-color: #fc7137 !important;
+    font-weight: bold;
+}
+
+.detail_info h6 {
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+
+.detail_info p {
+    font-family: 'Montserrat';
+    color: black;
+    font-size: 14px;
+}
+
+.detail_info button {
+    width: 100%;
+    border: 1px solid black;
+    font-family: 'Montserrat';
+    font-weight: 500;
+}
+
+.detail_info button:hover {
+    background: #6c757d !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--------------------checkout page end-------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+
+
+
+
+
+
+
+

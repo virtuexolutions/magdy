@@ -16,7 +16,42 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row" id="abId0.9441756532852081">
+            <div class="col-md-6">
+                <div class="shopfrom_mu">
+                    <h5 class="text-center">Shop From</h5>
+                    <p class="text-center">Get a local address to ship your items to your doorstep</p>
+                    <select name="shopfrom" id="" form="shopform">
+                        <option value=" Australia"> Australia</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Brazil"> Brazil</option>
+                        <option value="Canada"> Canada</option>
+                        <option value="China"> China</option>
+                        <option value="Denmark"> Denmark</option>
+                        <option value="Egypt"> Egypt</option>
+                        <option value="Germany"> Germany</option>
+                        <option value=" Hong Kong"> Hong Kong</option>
+                        <option value=" Italy"> Italy</option>
+                        <option value=" Japan">  Japan</option>
+                    </select>
+                     <button class="btn btn-muted">Go</button>
+                </div>
 
+            </div>
+            <div class="col-md-6" id="abId0.5926618657971694">
+                <div class="shopfrom_mu" id="abId0.08704407105162937" abineguid="C85A593BC72148DFB18392DEF9543782">
+                    <h5 class="text-center">Buy For Me Service</h5>
+                    <p class="text-center">Copy and paste the link of the product you want to purchase</p>
+                    <form action="{{ route("buy_for_me"); }}" method="get">
+                        @csrf
+                        <input type="text" id="product_url" name="product_link" placeholder="Example: https://www.ebay.com/itm/Original-Silicone-var=564232150986" required="">
+                        <button class="btn buy_mu">Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="productsection">
         <div class="container" >
             <div class="row">

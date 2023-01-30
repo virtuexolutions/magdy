@@ -14,12 +14,14 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Travelar\DashboardController as Travelar_dashboard;
+
+
+
 use App\Http\Controllers\Shopper\DashboardController as Shopper_dashboard;
-
-
-
 use App\Http\Controllers\Shopper\TravelarsController as ontravels_Travelars;
 use App\Http\Controllers\Shopper\ProductsContoller;
+use App\Http\Controllers\Shopper\buyingController;
+
 
 
 
@@ -43,12 +45,14 @@ use App\Http\Controllers\Shopper\ProductsContoller;
     Route::get("/contactus",[ContactUsController::class,"index"])->name("contactus");
     Auth::routes(['verify' => true]);
     Route::get("/login/{for?}",[LoginController::class,'showLoginForm'])->name("login");
-
     //Route::get("/register/{for?}",[RegisterController::class,'showRegistrationForm'])->name("register");
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify'); 
-
+    Route::get('/buy_for_me', [buyingController::class, 'index'])->name('buy_for_me');
+    Route::POST('/add_cart', [buyingController::class, 'add_product'])->name('add_product');
+    Route::get('/delete_cart/{id?}', [buyingController::class, 'delete_product'])->name('delete_product');
     
+
     Route::group(['middleware' => ['auth']], function(){
         // verification
         Route::get("/verification",[VerificationController::class,"index"])->name("verification");
@@ -57,17 +61,12 @@ use App\Http\Controllers\Shopper\ProductsContoller;
         Route::POST("/send_mail",[VerificationController::class,"send_mail"])->name("send_mail");
         Route::POST("/verify_email",[VerificationController::class,"verify_email"])->name("verify_email");
         Route::resource('setup_profile', ProfileController::class);
+        Route::get('/documents/get', [ProfileController::class,'get_documents'])->name("get_documents");
         Route::POST('/image/upload/store', [ProfileController::class,'file_upload']);
         Route::POST('/image/delete', [ProfileController::class,'file_delete']);
         Route::POST('/add_address', [ProfileController::class,'add_address'])->name("add_address");
+        Route::POST('/edit_address', [ProfileController::class,'edit_address'])->name("edit_address");
         Route::get('/delete_address/{id}', [ProfileController::class,'delete_address'])->name("delete_address");
-      
-        
-
-
-
-
-        
         Route::group(['middleware' => ['role_redirection']], function(){
             Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
             Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
@@ -76,14 +75,10 @@ use App\Http\Controllers\Shopper\ProductsContoller;
             Route::resource('permission', PermissionController::class);
             Route::resource('users', UserController::class);
         });
-           
         Route::get('/travelar/dashboard', [Travelar_dashboard::class, 'index'])->name('travelar-dashboard');
-       
-
         Route::get('/shopper/dashboard', [Shopper_dashboard::class, 'index'])->name('shopper-dashboard');
-
-
-        Route::get('/travelars-list', [ontravels_Travelars::class, 'index'])->name('travelar-list');
+     
+        // Route::get('/travelars-list', [ontravels_Travelars::class, 'index'])->name('travelar-list');
         
         
     }); 
