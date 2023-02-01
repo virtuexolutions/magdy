@@ -267,19 +267,19 @@
                                                                   </div>
                                                                   <div class="col-md-6">
                                                                     <label for="validationCustom03" class="form-label">City</label>
-                                                                    <input type="text" name="city" value="{{ $item->city }}" class="form-control" id="validationCustom03" required>
+                                                                    <input type="text" name="city" value="{{ $item->city ?? "" }}" class="form-control" id="validationCustom03" required>
                                                                   </div>
                                                                   <div class="col-md-6">
                                                                     <label for="validationCustom05" class="form-label">State</label>
-                                                                    <input type="text" name="state" value="{{ $item->state }}" class="form-control" id="validationCustom05" required>
+                                                                    <input type="text" name="state" value="{{ $item->state ?? ""}}" class="form-control" id="validationCustom05" required>
                                                                   </div>
                                                                   <div class="col-md-6">
                                                                     <label for="validationCustom05" class="form-label">Post Code</label>
-                                                                    <input type="text" name="postal"  value="{{ $item->postal }}" class="form-control" id="validationCustom05" required>
+                                                                    <input type="text" name="postal"  value="{{ $item->postal ?? 00 }}" class="form-control" id="validationCustom05" required>
                                                                   </div>
                                                                   <div class="col-12">
                                                                     <div class="form-check">
-                                                                      <input class="form-check-input" @if($item->d_address == 1) checked @endif type="checkbox" value=1 name="d_address" id="invalidCheck" required>
+                                                                      <input class="form-check-input" @if($item->d_address ?? 0 == 1) checked @endif type="checkbox" value=1 name="d_address" id="invalidCheck" required>
                                                                       <label class="form-check-label" for="invalidCheck">
                                                                         Default address
                                                                       </label>

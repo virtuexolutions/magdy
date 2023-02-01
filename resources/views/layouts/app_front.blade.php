@@ -24,7 +24,10 @@
       <div class="container">
         <div class="col-md-2 offset-10">
           {{-- <a href="#"><img src="{{ asset('front') }}/images/i.png" alt=""></a> --}}
-          <a href="#"><img src="{{ asset('front') }}/images/1.png" alt=""></a>
+          
+          @if(Auth::check())
+          <a href="{{ route("home")}}"><img src="{{ asset('front') }}/images/1.png" alt=""></a>
+          @endif
           <!-- <a href="#"><img src="{{ asset('front') }}/images/2.png" alt=""></a> -->
           <!-- <a href="#"><img src="{{ asset('front') }}/images/3.png" alt=""></a> -->
         </div>
@@ -88,7 +91,7 @@
                   </a>
                   
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="{{url('/dashboard')}}">Dashboard</a></li>
                     <li><a class="dropdown-item" href="{{url('/logout')}}">Logout</a></li>
                   </ul>
                 </li>

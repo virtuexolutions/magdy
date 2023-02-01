@@ -22,22 +22,16 @@
                 <div class="shopfrom_mu">
                     <h5 class="text-center">Shop From</h5>
                     <p class="text-center">Get a local address to ship your items to your doorstep</p>
-                    <select name="shopfrom" id="" form="shopform">
-                        <option value=" Australia"> Australia</option>
-                        <option value="Azerbaijan">Azerbaijan</option>
-                        <option value="Brazil"> Brazil</option>
-                        <option value="Canada"> Canada</option>
-                        <option value="China"> China</option>
-                        <option value="Denmark"> Denmark</option>
-                        <option value="Egypt"> Egypt</option>
-                        <option value="Germany"> Germany</option>
-                        <option value=" Hong Kong"> Hong Kong</option>
-                        <option value=" Italy"> Italy</option>
-                        <option value=" Japan">  Japan</option>
-                    </select>
-                     <button class="btn btn-muted">Go</button>
-                </div>
-
+                   <form action="{{ route('shopfrom') }}" method="post"> 
+                       @csrf
+                        <select name="country" id="">
+                            @foreach(config("constants.countries") as $k => $item)
+                                <option value="{{$k}}">{{$item}}</option>
+                            @endforeach
+                        </select>
+                        <button class="btn btn-muted">Go</button>
+                   </form>  
+               </div>
             </div>
             <div class="col-md-6" id="abId0.5926618657971694">
                 <div class="shopfrom_mu" id="abId0.08704407105162937" abineguid="C85A593BC72148DFB18392DEF9543782">

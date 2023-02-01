@@ -141,8 +141,8 @@
                                        echo  $total + $total/100 * $bankfee; 
                                        @endphp  USD
                                     </span>
-                                </li
-                                </ul>
+                                </li>
+                            </ul>
                         </div>
                         <p class="international">The international shipping fee to your address will be paid after
                             your items arrive at

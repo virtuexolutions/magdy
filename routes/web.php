@@ -18,10 +18,10 @@ use App\Http\Controllers\Travelar\DashboardController as Travelar_dashboard;
 
 
 use App\Http\Controllers\Shopper\DashboardController as Shopper_dashboard;
-use App\Http\Controllers\Shopper\TravelarsController as ontravels_Travelars;
 use App\Http\Controllers\Shopper\ProductsContoller;
 use App\Http\Controllers\Shopper\buyingController;
 use App\Http\Controllers\Shopper\CheckoutController;
+use App\Http\Controllers\Shopper\ShopFromController;
 
 
 
@@ -77,15 +77,20 @@ use App\Http\Controllers\Shopper\CheckoutController;
             Route::resource('permission', PermissionController::class);
             Route::resource('users', UserController::class);
         });
+        Route::get('/travelar/dashboard', [Travelar_dashboard::class, 'index'])->name('travelar-dashboard');
 
         
-        Route::get('/travelar/dashboard', [Travelar_dashboard::class, 'index'])->name('travelar-dashboard');
         
-        Route::get('/shopper/dashboard', [Shopper_dashboard::class, 'index'])->name('shopper-dashboard');
-        Route::get('/shopper/checkout/{country_from}/{country_to}', [CheckoutController::class, 'index'])->name('checkout');
-        Route::Resource('checkout',CheckoutController::class)->except("index");
+        Route::group(['middleware' => ['shopper_redirection']], function(){
+            Route::get('/shopper/dashboard', [Shopper_dashboard::class, 'index'])->name('shopper-dashboard');
+            Route::get('/shopper/checkout/{country_from}/{country_to}', [CheckoutController::class, 'index']);
+            Route::POST('/checkout-complete',[CheckoutController::class , "store" ])->name("checkout.store");
+            Route::POST('/shop-from',[ShopFromController::class,"index"])->name("shopfrom");
+        
+        });
+        
 
         // Route::get('/travelars-list', [ontravels_Travelars::class, 'index'])->name('travelar-list');
         
         
-    }); 
+    });  

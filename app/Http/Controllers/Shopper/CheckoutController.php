@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Shopper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CardVerificationRequest;
+use Auth;
+use App\Models\Order;
+use App\Models\Orderdetail;
 
 class CheckoutController extends Controller
 {
@@ -13,9 +16,13 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($country_from,$country_to)
+    public function index($country_from = "",$country_to = "")
     {
-        //
+
+        if($country_from == "" && $country_from == "")
+        {
+            return redirect()->back()->withErrors(["message"]);
+        }
         $data["country_from"] = $country_from;
         $data["country_to"] = $country_to;
         return view("shopper.checkout.index",$data);
@@ -41,17 +48,48 @@ class CheckoutController extends Controller
     {
         //
     //    / $validatedData = $request->validated();
-         $request->validate([
-            'country_from' => ['required', 'url', 'max:500'],
-            'country_to' => ['required', 'url', 'max:500'],
-            'credit-number' => ['required', 'url', 'max:500'],
-            'expiry' => ['required', 'string', 'max:300'],
-            'cvc' => ['required', 'digits_between:1,99999999999999'],
-            'country' => ['required', 'digits_between:1,10']
-        ]);
-        dd($request->all());
-       
 
+    try{
+         $request->validate([
+            'country_from' => ['required', 'max:4'],
+            'country_to' => ['required', 'max:4'],
+            'credit_number' => ['required', 'max:16'],
+            'expiry' => ['required', 'max:6'],
+            'cvc' => ['required', 'digits_between:1,300'],
+            'country' => ['required','max:4']
+        ]);
+        $card = Auth::user()->Credit_Card()->create([
+            "card" => $request->credit_number,
+            "expire" => $request->expiry,
+            "cvc" => $request->cvc,
+            "country" => $request->country,
+        ]);
+        $order_master = Auth::user()->Orders()->create([
+                "card_id" =>  $card->id,
+                "country_from" =>  $request->country_from,
+                "country_to" =>  $request->country_to,
+                "status" => 0,
+        ]);
+        foreach(\Cart::getContent() as $item){
+            $create_Array = [
+                "order_id" =>  $order_master->id,
+                'product_link' => $item->name,
+                'product_description' =>  $item->attributes->pro_description,
+                'product_quantity' => $item->quantity,
+                'product_price' => $item->price,
+                "product_weigth" => 0.00,
+                "product_weigth_type" => 1,
+            ];
+            Orderdetail::create($create_Array);
+            \Cart::clear();
+        }
+        return redirect("/buy_for_me")->with(["success" => "true" , "message" => "Order Has been Successfully Complete"]);
+      }
+      catch(\Exception $ex)
+      { 
+          return redirect()->back()->withErrors(["message" => $ex->getmessage()]);
+      }
+        
     }
 
     /**

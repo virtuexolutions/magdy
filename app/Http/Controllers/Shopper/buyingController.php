@@ -17,7 +17,6 @@ class buyingController extends Controller
         //
         $data["product_link"] = $request->product_link;
         $data["cart"] =  $items = \Cart::getContent();
-        
         return view("buying.index",$data);
     }
 

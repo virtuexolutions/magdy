@@ -16,6 +16,10 @@ class Shopper_Redirection
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(Auth::user()->hasAnyRole(['Shopper']))
+        {
+            return $next($request);
+        }
+        return abort(401, 'Unauthorized action.');
     }
 }

@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Credit_Card extends Model
 {
     use HasFactory;
+    protected $table = "credit_cards";
+
     protected $guarded = [];
 }

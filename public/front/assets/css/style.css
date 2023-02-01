@@ -2720,10 +2720,10 @@ input#credit {
 }
 
 .pr_details {
-    background: #f0f0f0;
-    padding: 18px;
-    padding-top: 33px;
-    padding-bottom: 28px;
+    /*background: #f0f0f0;*/
+    padding: 8px;
+    padding-top: 0;
+    padding-bottom: 22px;
     border-radius: 11px;
 }
 
@@ -3009,4 +3009,309 @@ h6.text-center {
     margin-top: -13%;
 }
 /*xxxxxxxxxxxxxxxxxxxxxx-----------------------------------hostpage end------------------------------------xxxxxxxxxxxxxxxxxxxxxx*/
+
+
+/*xxxxxxxxxxxxxxxxxxxxxx-----------------------------------shipment details start------------------------------------xxxxxxxxxxxxxxxxxxxxxx*/
+
+h3.ship {
+    font-family: 'Montserrat';
+    padding-top: 5%;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.shipment_first img {
+    width: 26%;
+    border-radius: 61px;
+    margin-top: 18px;
+}
+
+span.richard {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    /* padding-left: 14px; */
+    font-weight: 500;
+}
+
+span.con_mu {
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    /* padding-left: 14%; */
+    /* margin-top: -38px; */
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.shipment_first p {
+    padding-top: 42px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.f_row {
+    border: 2px solid orange;
+    margin-top: 4%;
+    padding-top: 8px;
+    padding-left: 27px;
+    padding-bottom: 51px;
+    border-radius: 20px;
+}
+
+.sec_col p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    padding-top: 20%;
+}
+
+.shipment_first{
+    display: inline-grid;
+}
+
+.ship_details {
+    background: white;
+    box-shadow: 0px 1px 6px 5px #d4d4d4;
+    padding: 39px;
+    border-radius: 22px;
+}
+
+.item_input select {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 11px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 3px solid orange;
+    /* box-shadow: -1px 4px 5px 1px gainsboro; */
+}
+
+.ship_d {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+.item_input label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding-bottom: 12px;
+    font-weight: 400;
+}
+
+.item_input input {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    padding-left: 11px;
+    border: 3px solid orange;
+    /* box-shadow: -1px 4px 5px 1px gainsboro; */
+}
+
+.sec_in label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding-bottom: 12px;
+    font-weight: 400;
+}
+
+input#i1 {
+    width: 30%;
+    justify-content: space-around;
+    display: inline-flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 7px;
+    border: 3px solid orange;
+    /* box-shadow: -1px 4px 5px 1px gainsboro; */
+    padding-left: 10px;
+}
+
+input#v1 {
+    width: 80%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 7px;
+    border: 3px solid orange;
+    /* box-shadow: -1px 4px 5px 1px gainsboro; */
+    padding-left: 10px;
+    margin-top: 25px;
+}
+
+select#s2 {
+    width: 16%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 3px solid orange;
+    /* box-shadow: -1px 4px 5px 1px gainsboro; */
+}
+
+input#r1 {
+    width: 9%;
+    background: navajowhite;
+    box-shadow: unset !important;
+    margin-top: 15px;
+}
+
+.sec_col img {
+    width: 13%;
+}
+
+.sh_item h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.sh_item input {
+    width: 100%;
+    padding-bottom: 9px;
+    padding-left: 11px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 3px solid orange;
+    /* box-shadow: -1px 4px 5px 1px gainsboro; */
+    padding-top: 9px;
+}
+
+.sh_item input::placeholder {
+    font-size: 15px;
+}
+
+input#confim_c {
+    width: unset !important;
+    box-shadow: unset;
+}
+
+.con {
+    color: #dc3545!important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.sh_item p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding-top: 16px;
+}
+
+.item_input input::placeholder {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sh_item img {
+    width: 100%;
+}
+
+/*xxxxxxxxxxxxxxxxxxxxxx-----------------------------------shipment details end------------------------------------xxxxxxxxxxxxxxxxxxxxxx*/
+
+
+/*xxxxxxxxxxxxxxxxxxxxxx-----------------------------------profile page start------------------------------------xxxxxxxxxxxxxxxxxxxxxx*/
+.profile {
+    color: black;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 37px;
+}
+
+.pr_img img {
+    width: 28%;
+    border-radius: 17px;
+}
+
+.pr_img span {
+    font-size: 16px;
+    color: white;
+}
+
+.profileside_mu {
+    background: #464646;
+    padding: 18px;
+    border-radius: 19px;
+    color: white;
+    height: 86%;
+}
+
+ul.pr_all li {
+    list-style-type: none;
+}
+
+ul.pr_all i {
+    font-size: 23px;
+    color: #b4b1b1;
+    color: white;
+}
+
+ul.pr_all {
+    padding-top: 21px !important;
+    padding-left: 8px !important;
+}
+
+ul.pr_all span {
+    font-size: 15px;
+    padding-left: 16px;
+    font-family: poppins;
+    color: white;
+}
+
+ul.pr_all li {
+    padding-left: 11px;
+    padding-top: 8px;
+}
+
+ul.pr_all a {
+    text-decoration: none;
+    color: #d3d1d1;
+}
+
+h3.basic {
+    padding-top: 100px;
+    font-size: 34px;
+}
+
+span.edit a {
+    float: right;
+    text-decoration: none;
+    font-size: 17px;
+    padding-top: 28px;
+    font-weight: 400;
+}
+
+span.edit i {
+    font-size: 18px;
+    padding-left: 9px;
+}
+
+.pr-input h5 {
+    font-family: 'Poppins';
+    font-weight: 300;
+    color: gray;
+    font-size: 18px;
+}
+
+.pr_information {
+    padding: 20px;
+}
+
+.pr-input h4 {
+    font-size: 22px;
+}
+
+.pr-input i {
+    display: block;
+    padding: 9px;
+    font-size: 24px;
+    color: black;
+}
+
+/*xxxxxxxxxxxxxxxxxxxxxx-----------------------------------profile page end------------------------------------xxxxxxxxxxxxxxxxxxxxxx*/
 
