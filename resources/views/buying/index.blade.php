@@ -203,7 +203,7 @@
                     <span class="text-muted">  @php 
                         $bankfee = config("constants.charges.bank_fee");
                        $total = \Cart::gettotal();
-                       echo  $total - $total/100 * $bankfee; 
+                       echo  $total + $total/100 * $bankfee; 
                         @endphp  USD</span>
                   </li>
                   <button class="btn btn-danger mt-3" id="check_out">Proceed to Checkout</button>

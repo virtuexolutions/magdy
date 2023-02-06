@@ -11,6 +11,7 @@
         "intervention/image": "^2.7",
         "laralabs/toaster": "^4.0",
         "laravel-validation-rules/credit-card": "^1.7",
+        "laravel/cashier": "^14.7",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",

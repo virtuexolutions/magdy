@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\user_address;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable,HasRoles,Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -35,6 +36,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_image',
         'profile_image_url',
         'password',
+        "stripe_id",
+        "pm_type",
+        "pm_last_four",
         'is_email_verified',
         'phone_verified',
         'status',      

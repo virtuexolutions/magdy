@@ -7,54 +7,38 @@
         <div class="row pt-5">
             <!-- profilesidebar -->
             <div class="col-md-3">
-                <h3 class="profile pb-5">Setting</h3>
-                <div class="profileside_mu">
-                    <div class="pr_img">
-                        <img class="pr_img" src="images/pr.jpg" alt="">
-                        <span>Ghulam Mustafa</span>
-                    </div>
-                    <div class="pr_details">
-                        <ul class="pr_all p-0">
-                            <a href="">
-                                <li><i class="bi bi-person-fill"></i><span>Profile</span></li>
-                            </a>
-                            <a href="{{ route("shopper-profile-address") }}" class="pt-0">
-                                <li><i class="bi bi-house-fill"></i><span>Address</span></li>
-                            </a>
-                            <a href="{{ route("shopper-cards") }}" class="pt-0">
-                                <li><i class="bi bi-credit-card"></i><span>Credit Card</span></li>
-                            </a>
-                            <a href="" class="pt-0">
-                                <li><i class="bi bi-paypal"></i><span>Shopper Requests</span></li>
-                            </a>
-                            {{-- <a href="" class="pt-0">
-                                <li><i class="bi bi-gift-fill"></i><span>Refer a Friend</span></li>
-                            </a> --}}
-                            {{-- <a href="" class="pt-0">
-                                <li><i class="bi bi-card-list"></i><span>Shippn Points</span></li>
-                            </a> --}}
-                            {{-- <a href="" class="pt-0">
-                                <li><i class="bi bi-wallet2"></i><span>Coupon</span></li>
-                            </a> --}}
-                            <a href="" class="pt-0">
-                                <li><i class="bi bi-lock-fill"></i><span>Change Password</span></li>
-                            </a>
-                            <a href="" class="pt-0">
-                                <li><i class="bi bi-trash3-fill"></i><span>Delete Account</span></li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
+                @include('shopper._shared.shopper_menus');
             </div>
             <!-- profilesidebar end -->
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-12">
                         <h2>ADD CARD</h2>
+                         <table class="table">
+                            <thead>
+                              <tr>
+                                 <th>S.#</th>
+                                 <th>Type</th>
+                                 <th>Card</th>
+                                 <th>Expiry</th>
+                                 <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            @foreach(auth::user()->Credit_Card()->get() as $key => $card)
+                                <tr>
+                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $card->pm_type }}</td>
+                                    <td>{{ $card->pm_last_four }}</td>
+                                    <td>{{ $card->expire_month }}/{{ $card->expire_year }}</td>
+                                    <td><a class="btn btn-danger" href="{{ route("delete_card",["id" => $card->id]) }}">delete</a></td>
+                                </tr>
+                            @endforeach
+                           </tbody>
+                        </table>
                     </div>
                     <div>
-                        
-                    </div>
+                     </div>
                 </div>
             </div>
         </div>

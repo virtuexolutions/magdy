@@ -147,17 +147,33 @@ class ProfileController extends Controller
     {
         return view("shopper.profile.edit_cards");
     }
-    // public function delete_address($id)
-    // {
-    //    try{
-    //      Auth::user()->user_address()->where("id",$id)->delete();
-    //      return redirect()->back()->with(["success" => true , "message" => "Address Deleted..." ]);
-    //     }
-    //     catch(\Exception $exception)
-    //     { 
-    //      return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
-    //     }
-    // }
+    public function delete_card($id)
+    {
+        try{
+            Auth::user()->Credit_Card()->where("id",$id)->delete();
+            return redirect()->back()->with(["success" => true , "message" => "Address Deleted..." ]);
+           }
+           catch(\Exception $exception)
+           { 
+            return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+           }
+    }
+    
+    public function delete_address($id)
+    {
+       try{
+         Auth::user()->user_address()->where("id",$id)->delete();
+         return redirect()->back()->with(["success" => true , "message" => "Address Deleted..." ]);
+        }
+        catch(\Exception $exception)
+        { 
+         return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+        }
+    }
+    public function Requests()
+    {
+        
+    }
     // /**
     //  * Display the specified resource.
     //  *

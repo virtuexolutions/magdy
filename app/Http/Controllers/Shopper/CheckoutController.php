@@ -16,6 +16,10 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+       $stripe =  \Stripe\Stripe::setApiKey('sk_test_51JIdZVJehHGbCsaCtO53jxO0sNp5ENohIDu08KlDU7Xh5AroEdegLfy0bnjOd3rtfsAhJA19TiE2mEspXsFwGjdr00lF3TxhRG');
+    }
     public function index($country_from = "",$country_to = "")
     {
 
@@ -50,22 +54,26 @@ class CheckoutController extends Controller
     //    / $validatedData = $request->validated();
 
     try{
-         $request->validate([
-            'country_from' => ['required', 'max:4'],
-            'country_to' => ['required', 'max:4'],
-            'credit_number' => ['required', 'max:16'],
-            'expiry' => ['required', 'max:6'],
-            'cvc' => ['required', 'digits_between:1,300'],
-            'country' => ['required','max:4']
+        $input = $request->all();
+        $customer = \Stripe\Customer::create([
+            'source' => $input["token"]["id"],
+            'email' => Auth::user()->email,
         ]);
-        $card = Auth::user()->Credit_Card()->create([
-            "card" => $request->credit_number,
-            "expire" => $request->expiry,
-            "cvc" => $request->cvc,
-            "country" => $request->country,
+        $card = Auth::user()->update([
+            "stripe_id" => $customer["id"],
+            "pm_type" => $input["token"]["card"]["brand"],
+            "pm_last_four" => $input["token"]["card"]["last4"]
+        ]);
+        $card_history = Auth::user()->Credit_Card()->create([
+            "stripe_id" => $customer["id"],
+            "expire_year" =>  $input["token"]["card"]["exp_year"],
+            "expire_month" =>   $input["token"]["card"]["exp_month"],
+            "pm_type" => $input["token"]["card"]["brand"],
+            "pm_last_four" => $input["token"]["card"]["last4"],
+            "country" => $input["country"],
         ]);
         $order_master = Auth::user()->Orders()->create([
-                "card_id" =>  $card->id,
+                "card_id" =>  $card_history->id,
                 "country_from" =>  $request->country_from,
                 "country_to" =>  $request->country_to,
                 "status" => 0,
@@ -83,13 +91,12 @@ class CheckoutController extends Controller
             Orderdetail::create($create_Array);
             \Cart::clear();
         }
-        return redirect("/buy_for_me")->with(["success" => "true" , "message" => "Order Has been Successfully Complete"]);
-      }
+        return response()->json(["success" => true , "message" => "Order Has been Successfully Complete"], 200);
+      } 
       catch(\Exception $ex)
-      { 
-          return redirect()->back()->withErrors(["message" => $ex->getmessage()]);
-      }
-        
+      {
+          return response()->json(["success" => false ,"message" => $ex->getmessage()], 500);
+      }   
     }
 
     /**

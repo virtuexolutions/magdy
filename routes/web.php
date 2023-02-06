@@ -25,6 +25,8 @@ use App\Http\Controllers\Shopper\ShopFromController;
 
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,11 +88,13 @@ use App\Http\Controllers\Shopper\ShopFromController;
             Route::get('/shopper/edit-profile',[ProfileController::class,"edit_profile"])->name("shopper-profile-edit");
             Route::get('/shopper/edit-address',[ProfileController::class,"dasboard_edit_address"])->name("shopper-profile-address");
             Route::get('/shopper/cards',[ProfileController::class,"parment_cards"])->name("shopper-cards");
+            Route::get('/shopper/delete_card/{id}',[ProfileController::class,"delete_card"])->name("delete_card");
            
             Route::get('/shopper/checkout/{country_from}/{country_to}', [CheckoutController::class, 'index']);
             Route::POST('/checkout-complete',[CheckoutController::class , "store" ])->name("checkout.store");
             Route::POST('/shop-from',[ShopFromController::class,"index"])->name("shopfrom");
            
+              
         });
         
 

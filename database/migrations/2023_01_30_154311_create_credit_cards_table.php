@@ -14,11 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('credit_cards', function (Blueprint $table) {
-            $table->id();
+            $table->increments("id");
             $table->integer('user_id')->unsigned();
-            $table->string('card', 16)->nullable();
-            $table->string('expire', 6)->nullable();
-            $table->integer('cvc')->unsigned()->nullable();
+            $table->string('stripe_id')->nullable();
+            $table->string('expire_month', 10)->nullable();
+            $table->string('expire_year', 10)->nullable();
+            $table->integer('pm_last_four')->unsigned()->nullable();
+            $table->integer('pm_type')->unsigned()->nullable();
             $table->string('country', 10)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

@@ -15,10 +15,11 @@
   <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/lib/slick-slider/slick/slick.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/lib/slick-slider/slick/slick-theme.css') }}" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-</head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+
+ </head>
 <body>
   <header>
     <!--firstsection -->

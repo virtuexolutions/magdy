@@ -162,12 +162,12 @@
                 <div class="col-md-7 offset-2">
                     <div class="payment_mu pt-1 pb-5">
                         <!-- 3d payment accordian -->
-                        <div class="accordion" id="accordionExample">
+                        <div class="credit-card" id="accordionExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" fdprocessedid="pnkosh">
-                                        <input type="radio" name="" id="">
-                                        <span class="3d"> Pay with 3D Secure </span>
+                                        <i class="bi bi-plus"></i>
+                                        <span class="credit-mu">Add Credit Card </span>
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -177,22 +177,14 @@
                                        <input type="hidden" name="country_to" value=" {{ $country_to }}" />
                                         
                                        <div class="row"> 
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 ">
+                                                
                                             <h6>Card Number</h6>
-                                            <input class="cc-number" fdprocessedid="has72b" id="cardnumber" maxlength="19" name="credit_number" pattern="\d*" placeholder="1234 1234 1234" type="tel" />
+                                            <div id="card-element" class="field border mx-2 px-2"></div>
+                                            {{-- <input class="cc-number" fdprocessedid="has72b" id="cardnumber" maxlength="19" name="credit_number" pattern="\d*" placeholder="1234 1234 1234" type="tel" /> --}}
                                             </div>
                                         </div>
-                                        <div class="row expiry">
-                                            <div class="col-md-6">
-                                                <h6>Expiration</h6>
-                                                <input type="text" name="expiry" id="" placeholder="MM / YY" fdprocessedid="ixdf3nd">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h6>CVV</h6>
-                                                <input type="text" name="cvc" id="" placeholder="CVC" fdprocessedid="xut7hy">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-4">
+                                        <div class="row mt-4 mx-1 p-0">
                                             <div class="col-md-12">
                                                 <h6>Country</h6>
                                                 <select name="country" id="pay_country" fdprocessedid="nnvq5b">
@@ -213,71 +205,22 @@
                         <!-- 3d payment accordian end -->
 
                         <!-- credit card payment accordian -->
-                        {{-- <div class="creditcard">
+                        <div class="creditcard">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" fdprocessedid="ppxtnd">
                                         <i class="bi bi-plus"></i>
-                                        <span class="credit-mu">Add Credit Card</span>
+                                        <span class="credit-mu">Saved Credit Card</span>
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                     <div class="accordion-body credit_body">
-                                        <div class="card_form">
-                                            <h6>Name on Card</h6>
-                                            <input type="text" id="credit" name="credit" placeholder="Name on Card">
-                                            <h6 class="pt-3">Card Number</h6>
-                                            <input type="text" id="credit" name="credit" placeholder="1111 2222 3333 4444">
-                                            <div class="row c_expiry">
-                                                <div class="col-md-6 date_sel">
-                                                    <h6 class="pt-4">Valid Thru</h6>
-                                                    <select name="" id="">
-                                                        <option value="">01</option>
-                                                        <option value="">02</option>
-                                                        <option value="">03</option>
-                                                        <option value="">04</option>
-                                                        <option value="">05</option>
-                                                        <option value="">06</option>
-                                                        <option value="">07</option>
-                                                        <option value="">09</option>
-                                                        <option value="">10</option>
-                                                        <option value="">11</option>
-                                                        <option value="">12</option>
-                                                    </select>
-                                                    <select name="" id="valid">
-                                                        <option value="">2023</option>
-                                                        <option value="">2024</option>
-                                                        <option value="">2025</option>
-                                                        <option value="">2026</option>
-                                                        <option value="">2027</option>
-                                                        <option value="">2028</option>
-                                                        <option value="">2029</option>
-                                                        <option value="">2030</option>
-                                                        <option value="">2031</option>
-                                                        <option value="">2032</option>
-                                                        <option value="">2033</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h6 class="pt-4">Security Code</h6>
-                                                    <input type="text" name="" id="" placeholder="CVC/CCV">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <button class="btn credit_btn mt-4">ADD CARD</button>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <button class="btn cancel_btn mt-2">CANCEL</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       <table>
+                                       </table>
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <!-- credit card payment end -->
                     </div>
                 </div>
@@ -293,9 +236,81 @@
 
 <div>
 <script>
-    $(function(){
-       
-    })
+    var post_url = '{{ route("checkout.store") }}';
+     var stripe = Stripe('pk_test_51JIdZVJehHGbCsaCYiCquX3mKuZDrym2d3EU31L8fDxs8886NBrqsg3rYrp8bHIdl7wvARE7vxLuNfhsrY5SFbCw00tHX5coQC');
+    var elements = stripe.elements();
+    var card = elements.create('card', {
+    hidePostalCode: true,
+    style: {
+        base: {
+        iconColor: '#000',
+        color: '#000',
+        lineHeight: '40px',
+        fontWeight: 300,
+        fontFamily: 'Helvetica Neue',
+        fontSize: '18px',
+        '::placeholder': {
+            color: '#ff6c36',
+        },
+        },
+    }
+    });
+    card.mount('#card-element');
 
+    function setOutcome(result) {
+    // var successElement = document.querySelector('.success');
+    // var errorElement = document.querySelector('.error');
+    // successElement.classList.remove('visible');
+    // errorElement.classList.remove('visible');
+   
+    if (result.token) {
+        
+        let data = 
+        {
+            "_token": $("input[name='_token']").val(),
+            "country_from":  $("input[name='country_from']").val(),
+            "country_to":  $("input[name='country_to']").val(),
+            "country":  $("select[name='country']").val(),
+            "token": result.token
+        };
+        $.ajax({
+            url: post_url,
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function(data) 
+            {
+               if(data.success == true)
+               {
+                 window.location.href = "/shopper/dashboard"
+               }
+               else
+               {
+                alert(data.message);
+               }
+            }
+        });
+        // In a real integration, you'd submit the form with the token to your backend server
+        //var form = document.querySelector('form');
+        //form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
+        //form.submit();
+        
+    } else if (result.error) {
+        alert(result.error.message);
+        // errorElement.classList.add('visible');
+     }
+    }
+
+    card.on('change', function(event) {
+    setOutcome(event);
+    });
+    document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var options = {
+        country:  document.getElementById('pay_country').value,
+    };
+    
+    stripe.createToken(card, options).then(setOutcome);
+    });
 </script>
 @endsection
