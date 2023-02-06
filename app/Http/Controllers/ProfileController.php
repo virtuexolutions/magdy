@@ -20,35 +20,6 @@ class ProfileController extends Controller
         return view("profile.index",$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function get_documents()
-    {
-         
-        return  response()->json(["sss"], 200);
-    }
-    public function file_upload(Request $request)
-    {
-        $image = $request->file('file');
-        $imageName = $image->getClientOriginalName();
-        $image->move(public_path('images'),$imageName);
-        $imageUpload = new Gallery();
-        $imageUpload->user_id = Auth::user()->id;
-        $imageUpload->filename = $imageName;
-        $imageUpload->save();
-        return response()->json(['success'=>$imageName]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -92,13 +63,18 @@ class ProfileController extends Controller
         return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
       }
     }
-
-    
-
+    public function edit_profile()
+    {
+        return view("shopper.profile.edit_profile");
+    }
+    public function dasboard_edit_address()
+    {
+        $data["addresses"] = Auth::user()->user_address()->get();
+     
+        return view("shopper.profile.edit_profie_address",$data);
+    }
     public function add_address(Request $request)
     {
-
-        
       $this->validate($request, [
         'address_1' => 'required',
         'address_2' => 'required',
@@ -111,15 +87,13 @@ class ProfileController extends Controller
          Auth::user()->user_address()->create(
             $request->except("_token")
          );
-         return redirect()->back()->with(["success" => true , "message" => "Address updated..." ]);
+          return redirect()->back()->with(["success" => true , "message" => "Address updated..." ]);
         }
         catch(\Exception $exception)
         { 
-         return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+          return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
         }
     }
-
-
     public function edit_address(Request $request)
     {
        $this->validate($request, [
@@ -130,7 +104,7 @@ class ProfileController extends Controller
         'postal' => 'required',
        ]);
        try{
-        echo Auth::user()->user_address()->where("id",$request->id)->update(
+         Auth::user()->user_address()->where("id",$request->id)->update(
             $request->except("_token")
          );
          return redirect()->back()->with(["success" => true , "message" => "Address updated..." ]);
@@ -140,75 +114,95 @@ class ProfileController extends Controller
          return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
         }
     }
-
-
-
-    public function delete_address($id)
+    
+    
+    public function get_documents()
     {
-       try{
-         Auth::user()->user_address()->where("id",$id)->delete();
-         return redirect()->back()->with(["success" => true , "message" => "Address Deleted..." ]);
-        }
-        catch(\Exception $exception)
-        { 
-         return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
-        }
+         
+        return  response()->json(["sss"], 200);
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function file_upload(Request $request)
     {
-        //
-
+        $image = $request->file('file');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('images'),$imageName);
+        $imageUpload = new Gallery();
+        $imageUpload->user_id = Auth::user()->id;
+        $imageUpload->filename = $imageName;
+        $imageUpload->save();
+        return response()->json(['success'=>$imageName]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function file_delete(Request $request)
     {
         $filename =  $request->get('filename');
         Gallery::where('filename',$filename)->delete();
-        $path=public_path().'/images/'.$filename;
-        if (file_exists($path)) {
+        $path = public_path().'/images/'.$filename;
+        if (file_exists($path)) 
+        {
             unlink($path);
         }
         return $filename;  
     }
+    public function parment_cards()
+    {
+        return view("shopper.profile.edit_cards");
+    }
+    // public function delete_address($id)
+    // {
+    //    try{
+    //      Auth::user()->user_address()->where("id",$id)->delete();
+    //      return redirect()->back()->with(["success" => true , "message" => "Address Deleted..." ]);
+    //     }
+    //     catch(\Exception $exception)
+    //     { 
+    //      return redirect()->back()->with(["success" => false , "message" => $exception->getMessage()]);
+    //     }
+    // }
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show($id)
+    // {
+    //     //
+
+    // }
+
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit($id)
+    // {
+    //     //
+        
+    // }
+
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function destroy($id)
+    // {
+    //     //
+    // }
+
 }

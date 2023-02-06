@@ -68,7 +68,7 @@ use App\Http\Controllers\Shopper\ShopFromController;
         Route::POST('/edit_address', [ProfileController::class,'edit_address'])->name("edit_address");
         Route::get('/delete_address/{id}', [ProfileController::class,'delete_address'])->name("delete_address");
        
-       
+        
         Route::group(['middleware' => ['role_redirection']], function(){
             Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
             Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
@@ -79,14 +79,18 @@ use App\Http\Controllers\Shopper\ShopFromController;
         });
         Route::get('/travelar/dashboard', [Travelar_dashboard::class, 'index'])->name('travelar-dashboard');
 
-        
+
         
         Route::group(['middleware' => ['shopper_redirection']], function(){
             Route::get('/shopper/dashboard', [Shopper_dashboard::class, 'index'])->name('shopper-dashboard');
+            Route::get('/shopper/edit-profile',[ProfileController::class,"edit_profile"])->name("shopper-profile-edit");
+            Route::get('/shopper/edit-address',[ProfileController::class,"dasboard_edit_address"])->name("shopper-profile-address");
+            Route::get('/shopper/cards',[ProfileController::class,"parment_cards"])->name("shopper-cards");
+           
             Route::get('/shopper/checkout/{country_from}/{country_to}', [CheckoutController::class, 'index']);
             Route::POST('/checkout-complete',[CheckoutController::class , "store" ])->name("checkout.store");
             Route::POST('/shop-from',[ShopFromController::class,"index"])->name("shopfrom");
-        
+           
         });
         
 

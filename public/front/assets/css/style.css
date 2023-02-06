@@ -3216,13 +3216,6 @@ input#confim_c {
 
 
 /*xxxxxxxxxxxxxxxxxxxxxx-----------------------------------profile page start------------------------------------xxxxxxxxxxxxxxxxxxxxxx*/
-.profile {
-    color: black;
-    font-family: 'Montserrat';
-    font-weight: 500;
-    font-size: 37px;
-}
-
 .pr_img img {
     width: 28%;
     border-radius: 17px;
